@@ -16,6 +16,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { mainListItems } from "./listItems";
+import TopViewHomeMenu from "../home/index";
 
 const drawerWidth = 300;
 
@@ -41,6 +42,7 @@ const styles = theme => ({
     padding: "0 8px",
     ...theme.mixins.toolbar
   },
+  appBarSpacer: theme.mixins.toolbar,
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
@@ -195,7 +197,10 @@ class Dashboard extends React.Component {
           <List>{mainListItems}</List>
         </Drawer>
         <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <TopViewHomeMenu />
           
+         
         </main>
       </div>
     );
