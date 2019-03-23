@@ -1,0 +1,38 @@
+#roundListWrapper{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px 104px;
+    padding: 15px 40px;
+}
+
+#roundListWrapper > .rounded-wrapper{
+    height: 155px;
+    width: 155px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    padding-top: 15px; 
+}
+
+.icon-rounded{
+    padding: 0;
+    height: 50%;
+    margin-bottom: 10px;
+}
+
+.icon-rounded svg {
+    font-size: 80px;
+}
+
+.title-dashboard-home{
+    border-bottom: 1px solid rgb(175, 174, 174);
+    text-transform: uppercase;
+    margin: 15px 40px;
+    padding: 15px 0;
+    font-weight: bold;
+}
+
+.description-rounded {
+    font-weight: bold;
+    font-size: 15px;
+}
