@@ -27,49 +27,49 @@ export const RoundList = () => {
       <div className="title-dashboard-home">dashboard</div>
       <div id="roundListWrapper">
       <div className="rounded-wrapper" style={{ backgroundColor: "red" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <AccountCircle />
         </div>
         <div className="description-rounded"> Employee Management </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "pink" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <GroupAdd />
         </div>
         <div className="description-rounded">Recruitment </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "purple" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <AttachMoney />
         </div>
         <div className="description-rounded">Payroll </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "blue" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <AccessTime />
         </div>
         <div className="description-rounded">Leave </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "orange" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <Event />
         </div>
         <div className="description-rounded">Training </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "teal" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <School />
         </div>
         <div className="description-rounded">Appraisal </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "salmon" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <AirplanemodeActive />
         </div>
         <div className="description-rounded">Travel </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "cornflowerblue" }}>
-        <div class="icon-rounded"> 
+        <div className="icon-rounded"> 
           <Money />
         </div>
         <div className="description-rounded">
@@ -77,7 +77,7 @@ export const RoundList = () => {
         </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "green" }}>
-        <div class="icon-rounded"> 
+        <div className="icon-rounded"> 
           <AccountBalance />
         </div>
         <div className="description-rounded">
@@ -85,7 +85,7 @@ export const RoundList = () => {
         </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "yellowgreen" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <Check />
         </div>
         <div className="description-rounded">
@@ -93,7 +93,7 @@ export const RoundList = () => {
         </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "brown" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <Assignment />
         </div>
         <div className="description-rounded">
@@ -101,13 +101,13 @@ export const RoundList = () => {
         </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "gold" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <AssignmentReturned />
         </div>
         <div className="description-rounded">Reports </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "grey" }}>
-        <div class="icon-rounded">
+        <div className="icon-rounded">
           <Build />
         </div>
         <div className="description-rounded">Settings </div>
