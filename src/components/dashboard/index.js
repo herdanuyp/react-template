@@ -15,8 +15,11 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import { mainListItems } from "./listItems";
+import Popover from '@material-ui/core/Popover';
+
+import Auth from '../../Auth/auth';
 import TopViewHomeMenu from "../home/index";
+import { mainListItems } from "./listItems";
 
 const drawerWidth = 300;
 
@@ -93,6 +96,12 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     height: "100vh",
     overflow: "auto"
+  },
+  logout: {
+    width: 100,
+    textAlign: 'center',
+    padding: 10,
+    cursor: 'pointer'
   }
 });
 
@@ -101,6 +110,8 @@ class Dashboard extends React.Component {
     open: true,
     anchorEl: null
   };
+
+  auth = new Auth();
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -113,6 +124,14 @@ class Dashboard extends React.Component {
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
+
+  handleProfileMenuClose = event => {
+    this.setState({ anchorEl: null });
+  };
+
+  logout = () => {
+    this.auth.logout(); 
+  }
 
   render() {
     const { classes } = this.props;
@@ -166,10 +185,27 @@ class Dashboard extends React.Component {
             <IconButton
               aria-owns={isMenuOpen ? "material-appbar" : undefined}
               aria-haspopup="true"
+              variant="contained"
               onClick={this.handleProfileMenuOpen}
             >
               <AccountCircle />
             </IconButton>
+            <Popover
+              id="simple-popper"
+              open={isMenuOpen}
+              anchorEl={anchorEl}
+              onClose={this.handleProfileMenuClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+            >
+              <div className={classes.logout} onClick={this.logout}>Log Out</div>
+            </Popover>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -199,8 +235,6 @@ class Dashboard extends React.Component {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <TopViewHomeMenu />
-          
-         
         </main>
       </div>
     );
