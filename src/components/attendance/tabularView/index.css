@@ -13,3 +13,8 @@
 .dot-present {
   background-color: rgb(102, 255, 102);
 }
+
+.detail-specify-entry-content {
+  width: 800px;
+  padding: 15px;
+}
