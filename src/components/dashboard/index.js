@@ -15,11 +15,14 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MailIcon from "@material-ui/icons/Mail";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import Popover from '@material-ui/core/Popover';
+import Popover from "@material-ui/core/Popover";
+import { Switch, Route } from "react-router-dom";
+import Notfound from "../notFound";
 
-import Auth from '../../Auth/auth';
+import Auth from "../../Auth/auth";
 import TopViewHomeMenu from "../home/index";
 import { mainListItems } from "./listItems";
+import ViewTabs from "../attendance/views";
 
 const drawerWidth = 300;
 
@@ -99,19 +102,19 @@ const styles = theme => ({
   },
   logout: {
     width: 100,
-    textAlign: 'center',
+    textAlign: "center",
     padding: 10,
-    cursor: 'pointer'
+    cursor: "pointer"
   }
 });
+
+const auth = new Auth();
 
 class Dashboard extends React.Component {
   state = {
     open: true,
     anchorEl: null
   };
-
-  auth = new Auth();
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -130,7 +133,11 @@ class Dashboard extends React.Component {
   };
 
   logout = () => {
-    this.auth.logout(); 
+    auth.logout();
+  };
+
+  componentDidMount() {
+    console.log();
   }
 
   render() {
@@ -139,104 +146,118 @@ class Dashboard extends React.Component {
     const isMenuOpen = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="absolute"
-          className={classNames(
-            classes.appBar,
-            classes.backgroundColor,
-            this.state.open && classes.appBarShift
-          )}
-        >
-          <Toolbar
-            disableGutters={!this.state.open}
-            className={classes.toolbar}
-          >
-            <IconButton
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
+      <React.Fragment>
+        {auth.isAuthenticated() ? (
+          <div className={classes.root}>
+            <CssBaseline />
+            <AppBar
+              position="absolute"
               className={classNames(
-                classes.menuButton,
-                this.state.open && classes.menuButtonHidden
+                classes.appBar,
+                classes.backgroundColor,
+                this.state.open && classes.appBarShift
               )}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              noWrap
-              className={classes.title}
-            >
-              Dashboard
-            </Typography>
+              <Toolbar
+                disableGutters={!this.state.open}
+                className={classes.toolbar}
+              >
+                <IconButton
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(
+                    classes.menuButton,
+                    this.state.open && classes.menuButtonHidden
+                  )}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography
+                  component="h1"
+                  variant="h6"
+                  noWrap
+                  className={classes.title}
+                >
+                  Dashboard
+                </Typography>
 
-            <IconButton>
-              <Badge badgeContent={1} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton>
-              <Badge badgeContent={1} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              aria-owns={isMenuOpen ? "material-appbar" : undefined}
-              aria-haspopup="true"
-              variant="contained"
-              onClick={this.handleProfileMenuOpen}
-            >
-              <AccountCircle />
-            </IconButton>
-            <Popover
-              id="simple-popper"
-              open={isMenuOpen}
-              anchorEl={anchorEl}
-              onClose={this.handleProfileMenuClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
+                <IconButton>
+                  <Badge badgeContent={1} color="secondary">
+                    <MailIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton>
+                  <Badge badgeContent={1} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+                <IconButton
+                  aria-owns={isMenuOpen ? "material-appbar" : undefined}
+                  aria-haspopup="true"
+                  variant="contained"
+                  onClick={this.handleProfileMenuOpen}
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Popover
+                  id="simple-popper"
+                  open={isMenuOpen}
+                  anchorEl={anchorEl}
+                  onClose={this.handleProfileMenuClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center"
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center"
+                  }}
+                >
+                  <div className={classes.logout} onClick={this.logout}>
+                    Log Out
+                  </div>
+                </Popover>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              variant="permanent"
+              classes={{
+                paper: classNames(
+                  classes.drawerPaper,
+                  !this.state.open && classes.drawerPaperClose
+                )
               }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }}
+              open={this.state.open}
             >
-              <div className={classes.logout} onClick={this.logout}>Log Out</div>
-            </Popover>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: classNames(
-              classes.drawerPaper,
-              !this.state.open && classes.drawerPaperClose
-            )
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbarIcon}>
-            <div
-              onClick={this.handleDrawerClose}
-              className={classes.menuToolbarIcon}
-            >
-              MENU
-            </div>
-            <IconButton onClick={this.handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
+              <div className={classes.toolbarIcon}>
+                <div
+                  onClick={this.handleDrawerClose}
+                  className={classes.menuToolbarIcon}
+                >
+                  MENU
+                </div>
+                <IconButton onClick={this.handleDrawerClose}>
+                  <ChevronLeftIcon />
+                </IconButton>
+              </div>
+              <Divider />
+              <List>{mainListItems}</List>
+            </Drawer>
+            <main className={classes.content}>
+              <div className={classes.appBarSpacer} />
+              <Switch>
+                <Route exact path="/dashboard" component={TopViewHomeMenu} />
+                <Route
+                  path="/dashboard/attendance-views"
+                  component={ViewTabs}
+                />
+              </Switch>
+            </main>
           </div>
-          <Divider />
-          <List>{mainListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.appBarSpacer} />
-          <TopViewHomeMenu />
-        </main>
-      </div>
+        ) : (
+          <Notfound />
+        )}
+      </React.Fragment>
     );
   }
 }
