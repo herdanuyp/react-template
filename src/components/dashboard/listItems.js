@@ -16,15 +16,20 @@ import Check from '@material-ui/icons/Check';
 import Assignment from '@material-ui/icons/Assignment';
 import AssignmentReturned from '@material-ui/icons/AssignmentReturned';
 import Build from '@material-ui/icons/Build';
+import { NavLink } from 'react-router-dom';
+
+import './listItems.css'
 
 export const mainListItems = (
-  <div>
+  <div id="side-bar-main-list">
+  <NavLink to='/dashboard/'>
     <ListItem button>
       <ListItemIcon>
         <Home />
       </ListItemIcon>
       <ListItemText primary="Home" />
     </ListItem>
+    </NavLink>
     <ListItem button>
       <ListItemIcon>
         <AccountCircle />
@@ -79,12 +84,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Assests/Claims" />
     </ListItem>
+      <NavLink to='/dashboard/attendance-views'>
     <ListItem button>
       <ListItemIcon>
         <Check />
       </ListItemIcon>
       <ListItemText primary="Attendance" />
     </ListItem>
+      </NavLink>
     <ListItem button>
       <ListItemIcon>
         <Assignment />
