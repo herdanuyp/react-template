@@ -7,7 +7,7 @@
   margin-right: 5px;
 }
 .dot-weekend {
-  background-color:#ffd400;
+  background-color: #ffd400;
 }
 
 .dot-present {
@@ -18,3 +18,31 @@
   width: 800px;
   padding: 15px;
 }
+
+/* .specify-entry-time-and-place {
+  display: flex;
+}
+
+.specify-entry-time-and-place > div {
+  margin-right: 50px;
+} */
+
+.location-detail{
+  margin-top: 12px;
+}
+
+.location-icon {
+  position: relative;
+}
+
+.location-icon > svg{
+  position: absolute;
+  bottom: 0;
+  color: rgb(177, 177, 177);
+}
+
+.location-name{
+  margin-left: 25px;
+  color: rgb(177, 177, 177);
+}
+
