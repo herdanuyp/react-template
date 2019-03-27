@@ -1,0 +1,15 @@
+.dot-weekend,
+.dot-present {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+.dot-weekend {
+  background-color:#ffd400;
+}
+
+.dot-present {
+  background-color: rgb(102, 255, 102);
+}
