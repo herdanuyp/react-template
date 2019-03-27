@@ -13,6 +13,7 @@ import Check from "@material-ui/icons/Check";
 import Assignment from "@material-ui/icons/Assignment";
 import AssignmentReturned from "@material-ui/icons/AssignmentReturned";
 import Build from "@material-ui/icons/Build";
+import { NavLink } from "react-router-dom";
 
 // let color = ['red', 'pink', 'purple', 'blue', 'orange', 'cadetblue', 'cyan', 'teal', 'green', 'lime', 'yellow', 'brown', 'grey']
 // const 'red' () => {
@@ -85,12 +86,14 @@ export const RoundList = () => {
         </div>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "yellowgreen" }}>
-        <div className="icon-rounded">
-          <Check />
-        </div>
-        <div className="description-rounded">
-          Attendance
-        </div>
+        <NavLink to="/dashboard/attendance-views">
+          <div className="icon-rounded">
+            <Check />
+          </div>
+          <div className="description-rounded">
+            Attendance
+          </div>
+        </NavLink>
       </div>
       <div className="rounded-wrapper" style={{ backgroundColor: "brown" }}>
         <div className="icon-rounded">
