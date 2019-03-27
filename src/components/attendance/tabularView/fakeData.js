@@ -1,0 +1,93 @@
+export const TubularData = [
+  {
+    id: "1",
+    date: "Mon, 03-18-2019",
+    firstIn: "-",
+    firstOut: "-",
+    totalHours: "-",
+    workingHours: "-",
+    status: "Weekend",
+    regularization: "",
+    lat: 1.2833754,
+    long: 103.8607264,
+    locationName: "Marina Bay Sands"
+  },
+  {
+    id: "2",
+    date: "Tue, 03-19-2019",
+    firstIn: "09:11AM",
+    firstOut: "06:29PM",
+    totalHours: "09:18",
+    workingHours: "08:18",
+    status: "Present",
+    regularization: "",
+    lat: 1.2833754,
+    long: 103.8607264,
+    locationName: "Marina Bay Sands"
+  },
+  {
+    id: "3",
+    date: "Wed, 03-20-2019",
+    firstIn: "09:11AM",
+    firstOut: "06:02PM",
+    totalHours: "08:50",
+    workingHours: "07:50",
+    status: "Present",
+    regularization: "",
+    lat: 1.2833754,
+    long: 103.8607264,
+    locationName: "Marina Bay Sands"
+  },
+  {
+    id: "4",
+    date: "Thur, 03-21-2019",
+    firstIn: "09:58AM",
+    firstOut: "06:36PM",
+    totalHours: "08:37",
+    workingHours: "07:37",
+    status: "Present",
+    regularization: "",
+    lat: 1.2833754,
+    long: 103.8607264,
+    locationName: "Marina Bay Sands"
+  },
+  {
+    id: "5",
+    date: "Fri, 03-22-2019",
+    firstIn: "01:58AM",
+    firstOut: "07:10PM",
+    totalHours: "05:12",
+    workingHours: "04:12",
+    status: "Present, test(Restricted)",
+    regularization: "",
+    lat: 1.2833754,
+    long: 103.8607264,
+    locationName: "Marina Bay Sands"
+  },
+  {
+    id: "6",
+    date: "Sat, 03-23-2019",
+    firstIn: "10:28AM",
+    firstOut: "06:33PM",
+    totalHours: "08:05",
+    workingHours: "07:05",
+    status: "Present",
+    regularization: "",
+    lat: 1.2833754,
+    long: 103.8607264,
+    locationName: "Marina Bay Sands"
+  },
+  {
+    id: "7",
+    date: "Sun, 03-24-2019",
+    firstIn: "-",
+    firstOut: "-",
+    totalHours: "-",
+    workingHours: "-",
+    status: "Weekend",
+    regularization: "",
+    lat: null,
+    long: null,
+    locationName: ""
+  }
+];

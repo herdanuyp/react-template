@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import DetailSpecifyEntry from "./detailSpecifyEntry";
+import { TubularData } from './fakeData';
 
 const styles = theme => ({
   root: {
@@ -19,79 +20,6 @@ const styles = theme => ({
     minWidth: 700
   }
 });
-
-let id = 0;
-function createData(
-  date,
-  firstIn,
-  firstOut,
-  totalHours,
-  workingHours,
-  status,
-  regularization
-) {
-  id += 1;
-  return {
-    id,
-    date,
-    firstIn,
-    firstOut,
-    totalHours,
-    workingHours,
-    status,
-    regularization
-  };
-}
-
-const rows = [
-  createData("Mon, 03-18-2019", "-", "-", "-", "-", "Weekend", ""),
-  createData(
-    "Tue, 03-19-2019",
-    "09:11AM",
-    "06:29PM",
-    "09:18",
-    "08:18",
-    "Present",
-    ""
-  ),
-  createData(
-    "Wed, 03-20-2019",
-    "09:11AM",
-    "06:02PM",
-    "08:50",
-    "07:50",
-    "Present",
-    ""
-  ),
-  createData(
-    "Thurs, 03-21-2019",
-    "09:58AM",
-    "06:36PM",
-    "08:37",
-    "07:37",
-    "Present",
-    ""
-  ),
-  createData(
-    "Fri, 03-22-2019",
-    "01:58AM",
-    "07:10PM",
-    "05:12",
-    "04:12",
-    "Present, test(Restricted)",
-    ""
-  ),
-  createData(
-    "Sat, 03-23-2019",
-    "10:28AM",
-    "06:33PM",
-    "08:05",
-    "07:05",
-    "Present",
-    ""
-  ),
-  createData("Sun, 03-24-2019", "-", "-", "-", "-", "Weekend", "")
-];
 
 class TabularView extends Component {
   state = {
@@ -130,11 +58,11 @@ class TabularView extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => (
+              {TubularData.map(row => (
                 <TableRow
                   key={row.id}
                   onClick={() => {
-                    if (row.firstIn === "-") {
+                    if (row.status.substr(0, 7).toLowerCase() === "weekend") {
                       alert("There is no data specify due to weekend");
                     } else {
                       this.toggleDrawer(true);
