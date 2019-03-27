@@ -1,11 +1,7 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
-const mapStyles = {
-  width: "75%",
-  height: "75%"
-};
+import MapsDetailSpecifyEntry from './mapsDetailSpecifyEntry';
 
 class DetailSpecifyEntry extends React.Component {
   render() {
@@ -40,9 +36,6 @@ class DetailSpecifyEntry extends React.Component {
         >
           <div
             tabIndex={0}
-            role="button"
-            // onClick={() => this.props.toggleDrawer(false)}
-            //onKeyDown={() => this.props.toggleDrawer(false)}
           >
             <div className="detail-specify-entry-content">
               <div className="date-now">{newdate}</div>
@@ -52,17 +45,7 @@ class DetailSpecifyEntry extends React.Component {
                   {this.props.state.dataSpecify.firstIn}
                   {this.props.state.dataSpecify.firstOut}
                 </div>
-                <Map
-                  google={this.props.google}
-                  zoom={15}
-                  style={mapStyles}
-                  initialCenter={{
-                    lat: 1.2833754,
-                    lng: 103.8607264
-                  }}
-                >
-                  <Marker />
-                </Map>
+                <MapsDetailSpecifyEntry />
               </div>
             </div>
           </div>
@@ -72,6 +55,4 @@ class DetailSpecifyEntry extends React.Component {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyCf0berdo2dHGeQBkwnKV7V5BU1T_dgnJ4"
-})(DetailSpecifyEntry);
+export default DetailSpecifyEntry;
