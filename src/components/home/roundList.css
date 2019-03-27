@@ -36,3 +36,8 @@
     font-weight: bold;
     font-size: 15px;
 }
+
+div.rounded-wrapper a {
+    text-decoration: none;
+    color: #fff;
+}
