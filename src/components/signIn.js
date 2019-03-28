@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -14,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-function PaperSheet(props) {
+function SignInPage(props) {
   const { classes } = props;
   const auth = new Auth();
 
@@ -34,8 +33,4 @@ function PaperSheet(props) {
   );
 }
 
-PaperSheet.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(PaperSheet);
+export default withStyles(styles)(SignInPage);
