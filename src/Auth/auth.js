@@ -2,10 +2,14 @@ import auth0 from "auth0-js";
 import { AUTH_CONFIG } from "./auth0-variables";
 import history from "../history";
 
-
 export default class Auth {
+  accessToken;
+  idToken;
+  expiresAt;
+
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
+    audience: AUTH_CONFIG.audience,
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: "token id_token",
@@ -18,72 +22,79 @@ export default class Auth {
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
+    this.getIdToken = this.getIdToken.bind(this);
+    // this.renewSession = this.renewSession.bind(this);
   }
 
   login() {
     this.auth0.authorize();
   }
 
-  logout() {
-    // Clear access token and ID token from local storage
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
-    localStorage.removeItem("user");
-    clearTimeout(this.tokenRenewalTimeout);
-    history.replace("/");
+  handleAuthentication() {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        history.replace("/");
+        console.log(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
   }
 
-  handleAuthentication() {
-    if (typeof window !== "undefined") {
-      this.auth0.parseHash((err, authResult) => {
-        if (authResult && authResult.accessToken && authResult.idToken) {
-          this.setSession(authResult);
-          history.replace("/dashboard");
-        } else if (err) {
-          history.replace("/");
-          console.log(err);
-        }
-      });
-    }
+  getAccessToken() {
+    return this.accessToken;
+  }
+
+  getIdToken() {
+    return this.idToken;
+  }
+
+  setSession(authResult) {
+    // Set isLoggedIn flag in localStorage
+    localStorage.setItem("isLoggedIn", "true");
+
+    // Set the time that the access token will expire at
+    let expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
+    this.accessToken = authResult.accessToken;
+    this.idToken = authResult.idToken;
+    this.expiresAt = expiresAt;
+
+    // navigate to the dashboard route
+    history.replace("/dashboard");
+  }
+
+  // renewSession() {
+  //   this.auth0.checkSession({}, (err, authResult) => {
+  //     if (authResult && authResult.accessToken && authResult.idToken) {
+  //       this.setSession(authResult);
+  //     } else if (err) {
+  //       this.logout();
+  //       console.log(err);
+  //       alert(
+  //         `Could not get a new token (${err.error}: ${err.error_description}).`
+  //       );
+  //     }
+  //   });
+  // }
+
+  logout() {
+    // Remove tokens and expiry time
+    this.accessToken = null;
+    this.idToken = null;
+    this.expiresAt = 0;
+
+    // Remove isLoggedIn flag from localStorage
+    localStorage.removeItem("isLoggedIn");
+
+    // navigate to the home route
+    history.replace("/");
   }
 
   isAuthenticated() {
     // Check whether the current time is past the
     // access token's expiry time
-    let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+    let expiresAt = this.expiresAt;
     return new Date().getTime() < expiresAt;
-  }
-
-  setSession(authResult) {
-    const expiresAt = JSON.stringify(
-      authResult.expiresIn * 1000 + new Date().getTime()
-    );
-    localStorage.setItem("access_token", authResult.accessToken);
-    localStorage.setItem("id_token", authResult.idToken);
-    localStorage.setItem("expires_at", expiresAt);
-    this.auth0.client.userInfo(authResult.accessToken, (err, user) => {
-      localStorage.setItem("user", JSON.stringify(user));
-    });
-  }
-
-  // getUser() {
-  //   if (localStorage.getItem("user")) {
-  //     return JSON.parse(localStorage.getItem("user"));
-  //   }
-  // }
-
-  // getUserName() {
-  //   if (this.getUser()) {
-  //     return this.getUser().name;
-  //   }
-  // }
-
-  getAccessToken() {
-    const accessToken = localStorage.getItem("access_token");
-    if (!accessToken) {
-      throw new Error("No access token found");
-    }
-    return accessToken;
   }
 }

@@ -7,8 +7,11 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+// import axios from 'axios';
+
 import DetailSpecifyEntry from "./detailSpecifyEntry";
 import { TubularData } from './fakeData';
+
 
 const styles = theme => ({
   root: {
@@ -26,6 +29,19 @@ class TabularView extends Component {
     dataSpecify: [],
     right: false
   };
+  
+  // componentDidMount(){
+  //   axios.get(`http://localhost:8888/view/tabular-data`, {
+  //     headers: {
+  //       'Authorization': `Bearer ${this.props.auth.getAccessToken()}`
+  //     }
+  //   })
+  //   .then((response) => {
+  //     this.setState({
+  //       dataSpecify: response.data
+  //     })
+  //   })
+  // }
 
   getTableRowData = rowData => {
     this.setState({

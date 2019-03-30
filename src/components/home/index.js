@@ -18,28 +18,31 @@ const styles = theme => ({
   }
 });
 
-function TopViewHomeMenu(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <Paper className={classes.paperRoot}>
-        <Grid container>
-          <Grid item xs={12} md={6}>
-            {LeftList}
+class HomeMenu extends React.Component {
+  render(){
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <Paper className={classes.paperRoot}>
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              {LeftList}
+            </Grid>
+            <Grid item xs={12} md={6}>
+              {RightList}
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
-            {RightList}
-          </Grid>
-        </Grid>
-      </Paper>
-      <div>
-        
-      <Paper className={classes.rounderRoot}>
-        <RoundList />
         </Paper>
+        <div>
+          
+        <Paper className={classes.rounderRoot}>
+          <RoundList />
+          </Paper>
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+    
+  }
 
-export default withStyles(styles)(TopViewHomeMenu);
+export default withStyles(styles)(HomeMenu);

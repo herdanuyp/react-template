@@ -45,7 +45,7 @@ class ViewTabs extends React.Component {
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer>List View</TabContainer>}
-        {value === 1 && <TabContainer><TabularView /></TabContainer>}
+        {value === 1 && <TabContainer><TabularView auth={this.props.auth} /></TabContainer>}
         {value === 2 && <TabContainer>Calendar View</TabContainer>}
       </div>
     );

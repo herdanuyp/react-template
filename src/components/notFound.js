@@ -1,13 +1,10 @@
 import React from "react";
-import Auth from "../Auth/auth";
 
-const auth = new Auth();
-
-const Notfound = () => {
+const Notfound = (props) => {
   return (
     <div id="not-found-page">
       <h1>You have to login first !</h1>
-      <button onClick={auth.login}> login </button>
+      <button onClick={props.auth.login()}> login </button>
     </div>
   );
 };

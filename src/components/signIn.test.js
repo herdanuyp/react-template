@@ -30,7 +30,7 @@ describe("<SignInPage />", () => {
     expect(wrapper.find(Button)).toHaveLength(1);
   });
 
-//   it('should be clicked', () => {
+//   it('should be rendered to auth0 login', () => {
 //     const wrapper = shallow(<SignInPage />);
 //     console.log(wrapper.find(Button).simulate('click'))
 //   })

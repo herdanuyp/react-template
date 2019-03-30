@@ -19,8 +19,7 @@ import Popover from "@material-ui/core/Popover";
 import { Switch, Route } from "react-router-dom";
 import Notfound from "../notFound";
 
-import Auth from "../../Auth/auth";
-import TopViewHomeMenu from "../home/index";
+import HomeMenu from "../home/index";
 import { mainListItems } from "./listItems";
 import ViewTabs from "../attendance/views";
 
@@ -108,8 +107,6 @@ const styles = theme => ({
   }
 });
 
-const auth = new Auth();
-
 class Dashboard extends React.Component {
   state = {
     open: true,
@@ -133,21 +130,18 @@ class Dashboard extends React.Component {
   };
 
   logout = () => {
-    auth.logout();
+    this.props.auth.logout();
   };
-
-  componentDidMount() {
-    console.log();
-  }
 
   render() {
     const { classes } = this.props;
     const { anchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <React.Fragment>
-        {auth.isAuthenticated() ? (
+        {isAuthenticated() ? (
           <div className={classes.root}>
             <CssBaseline />
             <AppBar
@@ -246,16 +240,16 @@ class Dashboard extends React.Component {
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
               <Switch>
-                <Route exact path="/dashboard" component={TopViewHomeMenu} />
+                <Route exact path="/dashboard" render={(props) => <HomeMenu auth={this.props.auth} {...props}/>} />
                 <Route
                   path="/dashboard/attendance-views"
-                  component={ViewTabs}
+                  render={(props) => <ViewTabs auth={this.props.auth} {...props} />}
                 />
               </Switch>
             </main>
           </div>
         ) : (
-          <Notfound />
+          <Notfound auth={this.props.auth}/>
         )}
       </React.Fragment>
     );
