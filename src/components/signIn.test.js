@@ -2,7 +2,7 @@ import React from "react";
 import SignInPage from "./signIn";
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import { createShallow, mount } from "@material-ui/core/test-utils";
+import { createShallow } from "@material-ui/core/test-utils";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 
@@ -10,18 +10,14 @@ configure({ adapter: new Adapter() });
 
 describe("<SignInPage />", () => {
   let shallow;
-  
+
   beforeAll(() => {
     shallow = createShallow({ dive: true });
   });
 
-  it("Should Render Sign In Page", () => {
-    const wrapper = shallow(<SignInPage />);
-    console.log(wrapper.debug());
-  });
-
   it("should render WithStyles(Paper)", () => {
     const wrapper = shallow(<SignInPage />);
+    console.log(wrapper.debug());
     expect(wrapper.find(Paper)).toHaveLength(1);
   });
 
@@ -30,8 +26,16 @@ describe("<SignInPage />", () => {
     expect(wrapper.find(Button)).toHaveLength(1);
   });
 
-//   it('should be rendered to auth0 login', () => {
-//     const wrapper = shallow(<SignInPage />);
-//     console.log(wrapper.find(Button).simulate('click'))
-//   })
+  const mockCallBack = jest.fn();
+  it("Test click event", () => {
+    const wrapper = shallow(<Button
+      variant="contained"
+      color="secondary"
+      onClick={mockCallBack}
+    >
+      Sign In
+    </Button>);
+    wrapper.simulate('click');
+    expect(mockCallBack.mock.calls.length).toEqual(1);
+  });
 });
