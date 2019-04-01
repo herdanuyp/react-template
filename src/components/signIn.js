@@ -29,7 +29,6 @@ class SignInPage extends React.Component {
           <Button
             variant="contained"
             color="secondary"
-            className={classes.button}
             onClick={this.login}
           >
             Sign In
