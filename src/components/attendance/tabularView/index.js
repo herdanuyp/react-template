@@ -7,10 +7,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-// import axios from 'axios';
+import axios from 'axios';
 
 import DetailSpecifyEntry from "./detailSpecifyEntry";
-import { TubularData } from './fakeData';
+// import { TubularData } from './fakeData';
 
 
 const styles = theme => ({
@@ -26,22 +26,23 @@ const styles = theme => ({
 
 class TabularView extends Component {
   state = {
+    tubularData: [],
     dataSpecify: [],
     right: false
   };
   
-  // componentDidMount(){
-  //   axios.get(`http://localhost:8888/view/tabular-data`, {
-  //     headers: {
-  //       'Authorization': `Bearer ${this.props.auth.getAccessToken()}`
-  //     }
-  //   })
-  //   .then((response) => {
-  //     this.setState({
-  //       dataSpecify: response.data
-  //     })
-  //   })
-  // }
+  componentDidMount(){
+    axios.get(`http://localhost:8888/view/tabular-data`, {
+      headers: {
+        'Authorization': `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    })
+    .then((response) => {
+      this.setState({
+        tubularData: response.data
+      })
+    })
+  }
 
   getTableRowData = rowData => {
     this.setState({
@@ -57,6 +58,7 @@ class TabularView extends Component {
 
   render() {
     const { classes } = this.props;
+    const { tubularData } = this.state;
 
     return (
       <div>
@@ -74,7 +76,7 @@ class TabularView extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {TubularData.map(row => (
+              {tubularData.map(row => (
                 <TableRow
                   key={row.id}
                   onClick={() => {
