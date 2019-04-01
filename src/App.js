@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, Router } from "react-router-dom";
-import SignInPage from "./components/signIn";
+import SignInPage from "./components/signIn/signIn";
 import Dashboard from "./components/dashboard/index";
 import Callback from "./components/callback";
 import history from './history';
@@ -15,13 +15,6 @@ const handleAuthentication = ({location}) => {
 }
 
 class App extends Component {
-  // componentDidMount() {
-  //   const { renewSession } = auth;
-
-  //   if (localStorage.getItem('isLoggedIn') === 'true') {
-  //     renewSession();
-  //   }
-  // }
   render() {
     return (
       <div className="App">
