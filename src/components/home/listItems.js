@@ -44,7 +44,7 @@ const styles = {
 };
 
 export const LeftList = (
-  <div>
+  <div className='left-list-items'>
     <ListItem button>
       <ListItemIcon>
         <PrintDisabled />
@@ -70,7 +70,7 @@ export const LeftList = (
 );
 
 export const RightList = (
-  <div>
+  <div className='right-list-items'>
     <ListItem button>
       <ListItemIcon>
         <AssignmentLate />

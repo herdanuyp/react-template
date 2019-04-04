@@ -24,7 +24,7 @@ import { NavLink } from "react-router-dom";
 
 export const RoundList = () => {
   return (
-    <div>
+    <div className="round-list-items">
       <div className="title-dashboard-home">dashboard</div>
       <div id="roundListWrapper">
       <div className="rounded-wrapper" style={{ backgroundColor: "red" }}>
